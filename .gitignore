@@ -5,7 +5,6 @@ env/
 # Django
 *.pyc
 __pycache__/
-db.sqlite3
 *.log
 
 # Environment variables
@@ -31,7 +30,6 @@ Thumbs.db
 
 # Database
 *.db
-*.sqlite3
 
 # Coverage reports
 htmlcov/
