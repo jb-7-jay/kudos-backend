@@ -21,6 +21,8 @@ class OrganizationUsersView(APIView):
             "user_id", flat=True
         )
 
-        users = User.objects.filter(id__in=user_ids).distinct()
+        users = (
+            User.objects.filter(id__in=user_ids).exclude(id=current_user.id).distinct()
+        )
         serializer = UserSerializer(users, many=True)
         return Response(serializer.data)
