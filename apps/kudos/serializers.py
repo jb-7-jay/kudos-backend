@@ -40,3 +40,18 @@ class KudosCreateSerializer(serializers.ModelSerializer):
         kudos = Kudos.objects.create(sender=sender, receiver=receiver, message=message)
 
         return kudos
+
+
+class SimpleUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["id", "username", "first_name", "last_name"]
+
+
+class KudosSerializer(serializers.ModelSerializer):
+    sender = SimpleUserSerializer()
+    receiver = SimpleUserSerializer()
+
+    class Meta:
+        model = Kudos
+        fields = ["id", "sender", "receiver", "message", "created_at"]
