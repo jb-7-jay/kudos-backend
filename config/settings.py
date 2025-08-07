@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "corsheaders",
+    "django_celery_beat",
     # Local apps
     "apps.users",
     "apps.kudos",
@@ -154,3 +155,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = "/static/"
+
+CELERY_BROKER_URL = config("CELERY_BROKER_URL")
+CELERY_TIMEZONE = "UTC"
+
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
