@@ -1,7 +1,12 @@
 from django.contrib.auth.models import User
 from rest_framework import generics, permissions
+from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .serializers import RegisterSerializer, UserSerializer
+from .serializers import (
+    RegisterSerializer,
+    UserSerializer,
+    CustomTokenObtainPairSerializer,
+)
 
 
 class RegisterView(generics.CreateAPIView):
@@ -16,3 +21,7 @@ class UserDetailsView(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
